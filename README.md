@@ -31,7 +31,7 @@ This repository will use for the assignment of mobile team after internships att
 - Testing in React Native with [Jest](https://jestjs.io/docs/en/getting-started)
 
 
-##Exercise
+## Exercise
 | Guide        | Design           | Duration  |
 | -------------|:----------------:|:---------:|
 | [Slide](https://docs.google.com/presentation/d/1H2n-_bVQ8Tx_5kR560uCWc3jBJpGuX4saH7qFbLKjiM/edit#slide=id.g5486ad5c5f_0_16)        | [zeplink](https://app.zeplin.io/project/5cf7238c7a42a545356ec498) or [PDF](https://apps.pycogroup.com/docs/download/attachments/89164310/uber-redesign-shadhin-arafat.pdf?version=1&modificationDate=1559730065897&api=v2)         | 24h  |
