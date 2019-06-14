@@ -25,7 +25,7 @@ const AppNavigator = createBottomTabNavigator(
       screen: NinthScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name='car' color={tintColor} size={14} />
+          <Icon name='car' color={tintColor} size={20} />
         )
       }
     },
@@ -33,7 +33,7 @@ const AppNavigator = createBottomTabNavigator(
       screen: FirstSampleScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name='utensils' color={tintColor} size={14} />
+          <Icon name='utensils' color={tintColor} size={20} />
         )
       }
     },
@@ -41,7 +41,7 @@ const AppNavigator = createBottomTabNavigator(
       screen: SecondSampleScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name='user-friends' color={tintColor} size={14} />
+          <Icon name='user-friends' color={tintColor} size={20} />
         )
       }
     },
@@ -49,7 +49,7 @@ const AppNavigator = createBottomTabNavigator(
       screen: ThirdSampleScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name='envelop' color={tintColor} size={14} />
+          <Icon name='envelope' color={tintColor} size={20} />
         )
       }
     },
@@ -57,7 +57,7 @@ const AppNavigator = createBottomTabNavigator(
       screen: FourthSampleScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name='ellipsis-h' color={tintColor} size={14} />
+          <Icon name='ellipsis-h' color={tintColor} size={20} />
         )
       }
     },

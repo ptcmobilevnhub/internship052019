@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Image, FlatList, ImageBackground } from "react-native";
+import { View, Text, Image, FlatList, ImageBackground, ActivityIndicator } from "react-native";
 import { IMAGES, FONTS } from "../../../assets";
 import Header from "../../components/Header";
 import styles from "./styles";
@@ -9,7 +9,8 @@ import { ScrollView } from "react-native-gesture-handler";
 class NinthScreen extends Component {
   constructor(props) {
     super(props);
-
+    this.state ={ isLoading: true}
+    
     this.savedAddresses = [
       {
         icon: IMAGES.iconOffice,
@@ -23,32 +24,32 @@ class NinthScreen extends Component {
       }
     ];
 
-    this.nearbyData = [
-      {
-        id: "6516",
-        image: IMAGES.pizza,      
-        title: "Grandiose Restaurant",
-        address: "Airport Road Khilkhet,1229"
-      },
-      {
-        id: "2064",
-        image: IMAGES.pizza1,
-        title: "Grandiose Restaurant 123",
-        address: "Airport Road Khilkhet,1229"
-      },
-      {
-        id: "5065",
-        image: IMAGES.pizza2,
-        title: "Grandiose Restaurant 123",
-        address: "Airport Road Khilkhet,1229"
-      },
-      {
-        id: "6969",
-        image: IMAGES.pizza3,
-        title: "Grandiose Restaurant 123",
-        address: "Airport Road Khilkhet,1229"
-      }
-    ];
+    // this.nearbyData = [
+    //   {
+    //     id: "6516",
+    //     image: IMAGES.pizza,      
+    //     title: "Grandiose Restaurant",
+    //     address: "Airport Road Khilkhet,1229"
+    //   },
+    //   {
+    //     id: "2064",
+    //     image: IMAGES.pizza1,
+    //     title: "Grandiose Restaurant 123",
+    //     address: "Airport Road Khilkhet,1229"
+    //   },
+    //   {
+    //     id: "5065",
+    //     image: IMAGES.pizza2,
+    //     title: "Grandiose Restaurant 123",
+    //     address: "Airport Road Khilkhet,1229"
+    //   },
+    //   {
+    //     id: "6969",
+    //     image: IMAGES.pizza3,
+    //     title: "Grandiose Restaurant 123",
+    //     address: "Airport Road Khilkhet,1229"
+    //   }
+    // ];
 
     this.friendNearbyData = [
       {
@@ -81,6 +82,30 @@ class NinthScreen extends Component {
       }
     ];
   }
+
+  async componentDidMount() {
+    try {
+      const result = await this.getNearbyDataFromApiUsingFetch();
+      const responseJson = await result.json();
+      
+      this.setState({
+        isLoading : false,
+        nearbyData : responseJson.nearbyData
+      })
+    } catch (error) {
+      console.error('error', error);
+    }
+  }
+
+  getNearbyDataFromApiUsingFetch = async () => {
+    return fetch('http://demo7730250.mockable.io/hau/flatlist/nearbydata', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+  };
 
   renderHeader = () => {
     const { navigation } = this.props;
@@ -147,7 +172,7 @@ class NinthScreen extends Component {
         <FlatList
           showsHorizontalScrollIndicator={false}
           horizontal
-          data={this.nearbyData}
+          data={this.state.nearbyData}
           renderItem={this.renderNearByItem}
           keyExtractor={item => item.id}
         />
@@ -165,7 +190,7 @@ class NinthScreen extends Component {
         }}
       >
         <ImageBackground
-          source={item.image}
+          source={{uri : item.image}}
           style={{ width: 300, height: 180, borderRadius: 10 }}
           imageStyle={{ borderRadius: 10 }}
         >
@@ -206,19 +231,29 @@ class NinthScreen extends Component {
     );
   };
 
-  renderTabNavigator = () => {
-    return (
-      <View style={styles.tabContainer}>
-        <Image source={IMAGES.iconMoto}/>
-        <Image source={IMAGES.iconFood}/>
-        <Image source={IMAGES.iconGroup}/>
-        <Image source={IMAGES.iconMessage}/>
-        <Image source={IMAGES.iconMore}/>
-      </View>
-    );
-  };
+  // renderTabNavigator = () => {
+  //   return (
+  //     <View style={styles.tabContainer}>
+  //       <Image source={IMAGES.iconMoto}/>
+  //       <Image source={IMAGES.iconFood}/>
+  //       <Image source={IMAGES.iconGroup}/>
+  //       <Image source={IMAGES.iconMessage}/>
+  //       <Image source={IMAGES.iconMore}/>
+  //     </View>
+  //   );
+  // };
+
+  
 
   render() {
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
     return (
       <ScrollView>
         <View style={styles.container}>
