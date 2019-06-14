@@ -3,7 +3,7 @@ import { Text, Image, View, TouchableOpacity } from 'react-native';
 
 
 import {renderLogoHeader} from '../../components'
-import { IMAGES } from '../../asserts';
+import { IMAGES } from '../../assets';
 import styles from './Welcome.screen.styles';
 
 const renderWelcomeImage = () => {

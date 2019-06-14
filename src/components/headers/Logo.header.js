@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMAGES } from '../../asserts';
+import { IMAGES } from '../../assets';
 import { Image } from 'react-native';
 
 
