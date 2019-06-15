@@ -4,13 +4,13 @@ import { IMAGES, FONTS } from "../../../assets";
 import Header from "../../components/Header";
 import styles from "./styles";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 class NinthScreen extends Component {
   constructor(props) {
     super(props);
-    this.state ={ isLoading: true}
-    
+    this.state = { isLoading: true }
+
     this.savedAddresses = [
       {
         icon: IMAGES.iconOffice,
@@ -87,10 +87,10 @@ class NinthScreen extends Component {
     try {
       const result = await this.getNearbyDataFromApiUsingFetch();
       const responseJson = await result.json();
-      
+
       this.setState({
-        isLoading : false,
-        nearbyData : responseJson.nearbyData
+        isLoading: false,
+        nearbyData: responseJson.nearbyData
       })
     } catch (error) {
       console.error('error', error);
@@ -112,8 +112,8 @@ class NinthScreen extends Component {
     return (
       <View>
         <Header
-          navigation={navigation}
           place='EighthScreen'
+          navigation={navigation}
           HeaderLeft={<Image source={IMAGES.arrowLeftBlack} />}
           HeaderRight={
             <View style={{ flexDirection: "row" }}>
@@ -190,7 +190,7 @@ class NinthScreen extends Component {
         }}
       >
         <ImageBackground
-          source={{uri : item.image}}
+          source={{ uri: item.image }}
           style={{ width: 300, height: 180, borderRadius: 10 }}
           imageStyle={{ borderRadius: 10 }}
         >
@@ -198,7 +198,7 @@ class NinthScreen extends Component {
             <Text style={styles.nearbyItemTitle}>{item.title}</Text>
             <Text style={styles.nearbyItemAddress}>{item.address}</Text>
           </View>
-          
+
         </ImageBackground>
       </View>
     );
@@ -224,7 +224,7 @@ class NinthScreen extends Component {
       <View
         style={styles.friendNearbyContainer}
       >
-        <Image source={{ uri: item.avatar}} style={styles.avatarFriend}/>
+        <Image source={{ uri: item.avatar }} style={styles.avatarFriend} />
         <Text style={styles.friendNearbyItemTitle}>{item.firstName}</Text>
         <Text style={styles.friendNearbyItemDetail}>{`${item.lastName} ${item.age}`}</Text>
       </View>
@@ -243,17 +243,18 @@ class NinthScreen extends Component {
   //   );
   // };
 
-  
+
 
   render() {
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, padding: 20 }}>
+          <ActivityIndicator />
         </View>
       )
     }
 
+    
     return (
       <ScrollView>
         <View style={styles.container}>

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   View,
   Image,
   Text,
   TextInput,
   ScrollView,
-} from "react-native";
-import { IMAGES, FONTS } from "../../../assets";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+} from 'react-native';
+import { IMAGES, FONTS } from '../../../assets';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import styles from './styles';
 export default class ThirdScreen extends Component {
   render() {
@@ -29,42 +29,42 @@ export default class ThirdScreen extends Component {
             <TextInput
               style={{
                 width: 60,
-                textAlign: "center",
+                textAlign: 'center',
                 fontSize: 18,
                 opacity: 0.7
               }}
-              placeholder="1"
-              placeholderTextColor="rgb(53,59,80)"
+              placeholder='1'
+              placeholderTextColor='rgb(53,59,80)'
             />
             <TextInput
               style={{
                 width: 60,
-                textAlign: "center",
+                textAlign: 'center',
                 fontSize: 18,
                 opacity: 0.7
               }}
-              placeholder="2"
-              placeholderTextColor="rgb(53,59,80)"
+              placeholder='2'
+              placeholderTextColor='rgb(53,59,80)'
             />
             <TextInput
               style={{
                 width: 60,
-                textAlign: "center",
+                textAlign: 'center',
                 fontSize: 18,
                 opacity: 0.7
               }}
-              placeholder="3"
-              placeholderTextColor="rgb(53,59,80)"
+              placeholder='3'
+              placeholderTextColor='rgb(53,59,80)'
             />
             <TextInput
               style={{
                 width: 60,
-                textAlign: "center",
+                textAlign: 'center',
                 fontSize: 18,
                 opacity: 0.7
               }}
-              placeholder="4"
-              placeholderTextColor="rgb(53,59,80)"
+              placeholder='4'
+              placeholderTextColor='rgb(53,59,80)'
             />
           </View>
           <View style={styles.noticeContainer}>
@@ -72,7 +72,7 @@ export default class ThirdScreen extends Component {
             <Footer
               FooterRight={<Image source={IMAGES.arrowRightBlack} />}
               navigation={navigation}
-              place="FourthScreen"
+              place='FourthScreen'
             />
           </View>
         </View>

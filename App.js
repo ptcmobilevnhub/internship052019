@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Image
 } from 'react-native';
-import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import { IMAGES, FONTS } from "./assets";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import FirstScreen from './src/screens/FirstScreen/FirstScreen';
@@ -14,6 +14,7 @@ import SixthScreen from './src/screens/SixthScreen/SixthScreen';
 import SeventhScreen from './src/screens/SeventhScreen/SeventhScreen';
 import EighthScreen from './src/screens/EighthScreen/EighthScreen';
 import NinthScreen from './src/screens/NinthScreen/NinthScreen';
+import AuthScreen from './src/screens/AuthScreen/AuthScreen';
 import FirstSampleScreen from './src/screens/SampleScreen/FirstSampleScreen';
 import SecondSampleScreen from './src/screens/SampleScreen/SecondSampleScreen';
 import ThirdSampleScreen from './src/screens/SampleScreen/ThirdSampleScreen';
@@ -24,7 +25,7 @@ const AppNavigator = createBottomTabNavigator(
     NinthScreen: {
       screen: NinthScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon name='car' color={tintColor} size={20} />
         )
       }
@@ -32,7 +33,7 @@ const AppNavigator = createBottomTabNavigator(
     FirstSampleScreen: {
       screen: FirstSampleScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon name='utensils' color={tintColor} size={20} />
         )
       }
@@ -40,7 +41,7 @@ const AppNavigator = createBottomTabNavigator(
     SecondSampleScreen: {
       screen: SecondSampleScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon name='user-friends' color={tintColor} size={20} />
         )
       }
@@ -48,7 +49,7 @@ const AppNavigator = createBottomTabNavigator(
     ThirdSampleScreen: {
       screen: ThirdSampleScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon name='envelope' color={tintColor} size={20} />
         )
       }
@@ -56,7 +57,7 @@ const AppNavigator = createBottomTabNavigator(
     FourthSampleScreen: {
       screen: FourthSampleScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => (
+        tabBarIcon: ({ tintColor }) => (
           <Icon name='ellipsis-h' color={tintColor} size={20} />
         )
       }
@@ -75,7 +76,7 @@ const AppNavigator = createBottomTabNavigator(
   }
 );
 
-const MyStackNavigator = createStackNavigator(
+const RegisterNavigator = createStackNavigator(
   {
     FirstScreen: {
       screen: FirstScreen,
@@ -97,7 +98,18 @@ const MyStackNavigator = createStackNavigator(
     },
     SeventhScreen: {
       screen: SeventhScreen,
-    },
+    }
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+  }
+);
+
+const LoggedInNavigator = createStackNavigator(
+  {
     EighthScreen: {
       screen: EighthScreen,
     },
@@ -106,7 +118,6 @@ const MyStackNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'FirstScreen',
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
@@ -114,7 +125,20 @@ const MyStackNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(MyStackNavigator);
+const AppContainer = createAppContainer(createSwitchNavigator(
+  {
+    AuthScreen: AuthScreen,
+    LoggedInScreen: LoggedInNavigator,
+    RegisterScreen: RegisterNavigator,
+  },
+  {
+    initialRouteName: 'AuthScreen',
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+  }
+));
 
 export default class App extends Component {
   render() {

@@ -5,7 +5,8 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  TextInput
+  TextInput,
+  AsyncStorage
 } from 'react-native';
 import { IMAGES, FONTS } from "../../../assets";
 import styles from './styles';
@@ -16,6 +17,13 @@ export default class SecondScreen extends Component {
       input: '',
     };
   }
+
+  _registerAsync = async () => {
+    await AsyncStorage.setItem('userToken', this.state.input);
+    this.props.navigation.navigate('ThirdScreen', {
+      content: this.state.input,
+    })
+  };
 
   render() {
     return (
@@ -38,11 +46,7 @@ export default class SecondScreen extends Component {
                 placeholder='Enter your mobile number'
                 placeholderTextColor='rgb(53,59,80)'
                 onChangeText={(text) => this.setState({input: text})}
-                onSubmitEditing={ () => {
-                  this.props.navigation.navigate('ThirdScreen', {
-                    content: this.state.input,
-                  })
-                }}
+                onSubmitEditing={ this._registerAsync }
               />
             </View>
             <Text style={styles.textLink}>
