@@ -6,8 +6,8 @@ import {
   ScrollView,
   Dimensions,
   TextInput,
-  AsyncStorage
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { IMAGES, FONTS } from "../../../assets";
 import styles from './styles';
 export default class SecondScreen extends Component {

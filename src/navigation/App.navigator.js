@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import FirstScreen from '../screens/FirstScreen/FirstScreen';

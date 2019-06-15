@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, ActivityIndicator, AsyncStorage, StyleSheet, StatusBar } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, StatusBar } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 export default class AuthScreen extends Component {
     constructor() {
         super();
