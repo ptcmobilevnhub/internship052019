@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         color:'#2697AC',
         fontSize: 15,
+    },
+    loading:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
     }
 });
 

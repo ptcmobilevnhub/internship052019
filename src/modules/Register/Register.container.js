@@ -1,44 +1,49 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {renderRegisterScreen} from "./Register.screen";
+import { renderRegisterScreen } from "./Register.screen";
 
-import { addPhone } from './Register.reducer';
-import store from '../../store'
-
-import { ToastAndroid } from 'react-native'
+import { addPhone, onCancelRegist } from './Register.reducer';
 
 class RegisterContainer extends Component {
-
-
-
-    componentDidMount = ()=>{
-        // ToastAndroid.show(store.getState(), Toast.SHORT)
-    }
-    data = {
-        phone:this.props.phone,
-        onSubmit:this.props.onAddPhone
-    }
-    render(){
-        return renderRegisterScreen(this.data)
+    // TODO component re-render after retry error.
+    render() {
+        data = {
+            isLoading: this.props.isLoading,
+            error: this.props.error,
+            onSubmit: this.props.onAddPhone,
+            onRetry: this.props.onRetry(this.props.phone),
+            onCancel: this.props.onCancel
+        }
+        console.log(data)
+        return renderRegisterScreen(data)
     }
 }
 
-// const mapStatetoProps = (state) =>{
-//     return ({
-//         phone:state.phone
-//     })
-// }
+const mapStatetoProps = (state) => {
+    console.log('maps')
+    return ({
+        phone: state.registerReducer.userData.phone,
+        isLoading: state.registerReducer.isLoading,
+        error: state.registerReducer.error,
+    })
+}
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onAddPhone: (event) => {
-            ToastAndroid.show(event.nativeEvent.text,ToastAndroid.SHORT);
-            dispatch(addPhone(event.nativeEvent.text));
+            dispatch(addPhone(event.nativeEvent.text,ownProps));
+        },
+        onRetry: (phone) => () => {
+            dispatch(addPhone(phone,ownProps));
+        },
+        onCancel: () => {
+            ownProps.navigation.navigate('Welcome')
+            dispatch(onCancelRegist());
         }
     };
-  };
-  
+};
+
 export default connect(
-    null,
+    mapStatetoProps,
     mapDispatchToProps
 )(RegisterContainer);

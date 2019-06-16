@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Image, Text, TextInput, TouchableOpacity} from 'react-native'
-import {IMAGES} from '../../assets';
+import { View, Image, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native'
+import { IMAGES } from '../../assets';
 import styles from './Register.screen.styles'
 
 const renderRegisterImage = () => {
     return (
-        <View style = {styles.imageRegister}>
+        <View style={styles.imageRegister}>
             <Image
                 resizeMode="contain"
                 source={IMAGES.register.image}
@@ -13,22 +13,22 @@ const renderRegisterImage = () => {
         </View>
     )
 };
-const renderTextTittle = () =>{
+const renderTextTittle = () => {
     return (
-        <Text style = {styles.textTittle}>Get moving with Uber</Text>
+        <Text style={styles.textTittle}>Get moving with Uber</Text>
     )
 };
-const renderInputPhone = (phone,onSubmit)=>{
+const renderInputPhone = (phone, onSubmit) => {
     return (
-        <View style ={styles.inputPhoneContainer}>
-            <View style = {styles.textPhoneArea}>
+        <View style={styles.inputPhoneContainer}>
+            <View style={styles.textPhoneArea}>
                 <Text>+880</Text>
             </View>
-            <View style = {styles.inputPhone}>
+            <View style={styles.inputPhone}>
                 <TextInput
-                    value={phone||null}
+                    // value={phone||null}
                     onSubmitEditing={onSubmit}
-                    style = {{ textAlign:'center',}}
+                    style={{ textAlign: 'center', }}
                     placeholder="Enter your mobile number"
                     keyboardType={'phone-pad'}
                 />
@@ -36,22 +36,40 @@ const renderInputPhone = (phone,onSubmit)=>{
         </View>
     )
 };
-const renderTextLinkSocial = ()=>{
+const renderTextLinkSocial = () => {
     return (
         <TouchableOpacity>
-            <Text style = {styles.textLinkSocial}>Or connect using a social account</Text>
+            <Text style={styles.textLinkSocial}>Or connect using a social account</Text>
         </TouchableOpacity>
     )
 };
-const RegisterScreen = (props)=>{
-    return (
-        <View style={styles.container}>
-            {renderRegisterImage()}
-            {renderTextTittle()}
-            {renderInputPhone(props.phone, props.onSubmit)}
-            {renderTextLinkSocial()}
+const RegisterScreen = (props) => {
+    if (props.error != null) {
+        Alert.alert(
+            'Error',
+            props.error,
+            [
+                {
+                    text: 'Cancel',
+                    onPress: props.onCancel,
+                    style: 'cancel',
+                },
+                { text: 'Retry', onPress: props.onRetry },
+            ],
+        );
+    }
+    return props.isLoading ? (
+        <View style={styles.loading}>
+            <ActivityIndicator />
         </View>
-    )
+    ) : (
+            <View style={styles.container}>
+                {renderRegisterImage()}
+                {renderTextTittle()}
+                {renderInputPhone(props.phone, props.onSubmit)}
+                {renderTextLinkSocial()}
+            </View>
+        )
 };
 
-export {RegisterScreen as renderRegisterScreen}
+export { RegisterScreen as renderRegisterScreen }

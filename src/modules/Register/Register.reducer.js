@@ -3,6 +3,7 @@ import { getVerifyCodeFromAPI } from "../../data";
 const ADD_PHONE_STARTED = 'ADD_PHONE_STARTED'
 const ADD_PHONE_SUCCESS = 'ADD_PHONE_SUCCESS'
 const ADD_PHONE_FAILURE = 'ADD_PHONE_FAILURE'
+const CANCEL_REGIST = 'CANCEL_REGIST'
 
 const initialState = {
     userData:{},
@@ -27,21 +28,24 @@ export default function registerReducer(state = initialState, action) {
                     ...state.userData,
                     verifyCode:action.verifyCode
                 },
+                error:null,
                 isLoading:false,
             }
         case ADD_PHONE_FAILURE:
             return {
                 ...state,
-                isLoading:false,
+                isLoading:true,
                 error:action.error
             }
+        case CANCEL_REGIST:
+            return initialState
         default:
             return state
     }
 }
 
 
-export const addPhone = (phone) => {
+export const addPhone = (phone,ownProps) => {
     return dispatch => {
         dispatch(addPhoneStarted(phone));
         getVerifyCodeFromAPI(phone,
@@ -54,20 +58,27 @@ export const addPhone = (phone) => {
             
                 response.json().then(function(verifyCode) {
                     dispatch(addPhoneSuccess(verifyCode))
+                    ownProps.navigation.navigate('Verify')
                 });
             }, 
             err => {dispatch(addPhoneFailure(err.message))})
     };
 };
+
+export const onCancelRegist = () => {
+    return dispatch =>{
+        dispatch({type:CANCEL_REGIST});
+    }
+}
   
 const addPhoneStarted = (phone) => ({
     type: ADD_PHONE_STARTED,
     phone
 });
   
-const addPhoneSuccess = verifyCode => ({
+const addPhoneSuccess = response => ({
     type: ADD_PHONE_SUCCESS,
-    verifyCode
+    verifyCode:response.verifyCode
 });
 const addPhoneFailure = error => ({
     type: ADD_PHONE_FAILURE,
