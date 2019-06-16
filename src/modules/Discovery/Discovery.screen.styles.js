@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-evenly'
     },
     context: {
         marginLeft: 30
@@ -121,6 +121,12 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 5,
         backgroundColor: '#7ac4ef'
+    },
+    header:{
+        height:84,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
     },
 })
 

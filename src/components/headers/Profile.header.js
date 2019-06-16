@@ -30,9 +30,8 @@ const ProfileHeader = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 30,
+        padding: 30,
         alignSelf: "baseline",
-        height: 84,
         flexDirection: 'row',
         alignItems: 'center'
     },

@@ -21,6 +21,15 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize:25,
         paddingRight:30
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20
+    },
+    footer:{
+        flexDirection:'row-reverse', 
+        margin:30
     }
 
 })

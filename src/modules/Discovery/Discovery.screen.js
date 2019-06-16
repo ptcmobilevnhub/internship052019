@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react'
 import { View, Text, FlatList, ImageBackground, ScrollView, Alert } from 'react-native'
 import { IMAGES } from '../../assets'
 import styles from './Discovery.screen.styles'
-// import ArrowLeftHeader from '../navigation/headers/ArrowLeft.header'
-// import ProfileHeader from '../navigation/headers/Profile.header'
+import {renderArrowLeftHeader,renderProfileHeader} from '../../components'
 export default class GenderScreen extends PureComponent {
     constructor(props) {
         super(props);
@@ -61,36 +60,13 @@ export default class GenderScreen extends PureComponent {
         ]
     };
 
-
-    _onClickBack = () => {
-        this.props.navigation.goBack();
-    }
-    _onClickProfile = () => {
-        Alert.alert(
-            'Profile click',
-            'Click to my profile',
-            [
-                { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
-                {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                },
-                { text: 'OK', onPress: () => console.log('OK Pressed') },
-            ],
-            { cancelable: false },
-        );
-
-    }
-
     renderHeader = () => {
-        return null
-        // return (
-        //     <View style={{flexDirection:'row', justifyContent:'space-between',marginTop:5}}>
-        //         {ArrowLeftHeader({onPress: this._onClickBack})}
-        //         {ProfileHeader({onPress:this._onClickProfile, name: 'Shadhin', points:4.89, image:IMAGES.profile_small})}
-        //     </View>
-        // )
+        return (
+            <View style={styles.header}>
+                {renderArrowLeftHeader({onPress: this.props.onClickBack})}
+                {renderProfileHeader({onPress:this.props.onClickProfile, name: 'Shadhin', point:4.89, image:IMAGES.profile_small})}
+            </View>
+        )
     }
 
     renderTextTittle = () => {

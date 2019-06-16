@@ -19,8 +19,11 @@ const styles = StyleSheet.create({
     textDetail:{
         fontSize:13.4, 
         marginHorizontal:30,
+    },
+    footer:{
+        flexDirection:'row-reverse', 
+        margin:30
     }
-
 })
 
 export default styles;

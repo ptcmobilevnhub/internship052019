@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         justifyContent:'space-between'
     },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20
+    },
     contentWrapper:{
         flexDirection:'row',
         justifyContent:'center'
@@ -25,6 +30,10 @@ const styles = StyleSheet.create({
     },
     imageGender:{
         width:'100%'
+    },
+    footer:{
+        flexDirection:'row-reverse', 
+        margin:30
     }
 })
 
