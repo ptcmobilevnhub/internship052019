@@ -6,7 +6,7 @@ import WelcomeScreen from './Welcome.screen'
 class WelcomeContainer extends Component {
 
     onClickRegisterbyPhone = () => {
-        // TODO add navigation:this.props.navigation.navigate('Register');
+        this.props.navigation.navigate('Register');
     };
 
     data = {
