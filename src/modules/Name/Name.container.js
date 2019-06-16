@@ -3,31 +3,33 @@ import { connect } from 'react-redux';
 
 import NameScreen from './Name.screen'
 
+import { addName } from '../Register/Register.reducer';
+
+
 class NameContainer extends Component {
-    data = {
-        name: this.props.name,
-        onClickBack: ()=>(undefined),
-        onClickNext: this.props.onAddName,
-        onClickSkip: ()=>(undefined),
-    }
+    
     render(){
+        data = {
+            name: this.props.name,
+            onClickBack: ()=>{this.props.navigation.goBack()},
+            onClickNext: this.props.onAddName,
+            onClickSkip: ()=>{this.props.navigation.navigate('ChooseGender')},
+        }
         return (
-            <NameScreen {...this.data}/>
+            <NameScreen {...data}/>
         )
     }
 }
 
 const mapStatetoProps = (state) =>{
     return ({
-        // name:state.reducerRegister.userData.name,
-        name:"Test name"
+        name:state.registerReducer.userData.name,
     })
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch,ownProps) => {
     return {
-        onAddName: (name) => {
-            ToastAndroid.show(name,ToastAndroid.SHORT);
-            dispatch(addName(name));
+        onAddName: (name)=> () => {
+            dispatch(addName(name,ownProps));
         }
     };
 };

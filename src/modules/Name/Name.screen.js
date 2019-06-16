@@ -41,7 +41,7 @@ export default class NameScreen extends PureComponent {
     renderFooter = (onClickNext) => {
         return (
             <View style={styles.footer}>
-                {renderArrowRightFooter({ onPress: onClickNext })}
+                {renderArrowRightFooter({ onPress: onClickNext(this.state.text) })}
             </View>
         )
     }

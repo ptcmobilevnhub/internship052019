@@ -4,6 +4,7 @@ const ADD_PHONE_STARTED = 'ADD_PHONE_STARTED'
 const ADD_PHONE_SUCCESS = 'ADD_PHONE_SUCCESS'
 const ADD_PHONE_FAILURE = 'ADD_PHONE_FAILURE'
 const CANCEL_REGIST = 'CANCEL_REGIST'
+const ADD_NAME = 'ADD_NAME'
 
 const initialState = {
     userData:{},
@@ -39,11 +40,34 @@ export default function registerReducer(state = initialState, action) {
             }
         case CANCEL_REGIST:
             return initialState
+        case ADD_NAME:
+            return {
+                ...state,
+                userData:{
+                    ...state.userData,
+                    name:action.name
+                },
+                error:null,
+                isLoading:false,
+            }
         default:
             return state
     }
 }
 
+const addPhoneStarted = (phone) => ({
+    type: ADD_PHONE_STARTED,
+    phone
+});
+  
+const addPhoneSuccess = response => ({
+    type: ADD_PHONE_SUCCESS,
+    verifyCode:response.verifyCode
+});
+const addPhoneFailure = error => ({
+    type: ADD_PHONE_FAILURE,
+    error
+});
 
 export const addPhone = (phone,ownProps) => {
     return dispatch => {
@@ -70,17 +94,11 @@ export const onCancelRegist = () => {
         dispatch({type:CANCEL_REGIST});
     }
 }
+
+export const addName = (name,ownProps) => {
+    return dispatch => {
+        dispatch({type:ADD_NAME,name:name});
+        ownProps.navigation.navigate('ChooseGender')
+    };
+};
   
-const addPhoneStarted = (phone) => ({
-    type: ADD_PHONE_STARTED,
-    phone
-});
-  
-const addPhoneSuccess = response => ({
-    type: ADD_PHONE_SUCCESS,
-    verifyCode:response.verifyCode
-});
-const addPhoneFailure = error => ({
-    type: ADD_PHONE_FAILURE,
-    error
-});
