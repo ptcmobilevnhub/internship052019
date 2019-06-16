@@ -3,7 +3,7 @@ import { IMAGES } from '../../assets';
 import { Image } from 'react-native';
 
 
-const LogoHeader = (height) => (
+const LogoHeader = (height = 46) => (
   <Image
     style={{height:height, width:(height*137/46)}}
     resizeMode={'contain'}
