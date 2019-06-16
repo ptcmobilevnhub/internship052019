@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 // import {IMAGES} from '../../assets'
 import { renderArrowLeftHeader, renderArrowRightFooter } from '../../components'
 
@@ -21,16 +21,15 @@ const renderTextTittle = (phone) => {
     )
 }
 const renderInputNumber = (verifyCode) => {
-    const tmp = verifyCode || ["0", "0", "0", "0"]
     return (
         <View style={styles.phoneWrapper}>
-            {tmp.map((element, index) => (
+            {verifyCode.map((element, index) => (
                 <TextInput
                     key={index}
                     style={styles.phoneInput}
                     value={element}
                     keyboardType={'numeric'}
-                    editable={verifyCode ? false : true}
+                    editable={false}
                 />
             ))}
         </View>

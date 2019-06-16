@@ -1,25 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { renderVerifyScreen } from './Verify.screen'
 
 class VerifyContainer extends Component {
-    data = {
-        phone:this.props.phone,
-        verifyCode: this.props.verifyCode,
-        onClickBack: ()=>(undefined),
-        onClickNext: ()=>(undefined),
-    }
-    render(){
-        return renderVerifyScreen(this.data)
+
+    render() {
+        data = {
+            verifyCode: this.props.verifyCode,
+            onClickBack: () => (this.props.navigation.goBack()),
+            onClickNext: () => (this.props.navigation.navigate('NameInput')),
+        }
+        return renderVerifyScreen(data)
     }
 }
 
-const mapStatetoProps = (state) =>{
+const mapStatetoProps = (state) => {
+    console.log(state)
     return ({
-        // phone:state.reducerRegister.userData.phone,
-        // verifyCode:state.reducerRegister.userData.verifyCode
-        phone: '0239',
-        verifyCode:["1","3","6","5"]
+        verifyCode: state.registerReducer.userData.verifyCode,
     })
 }
 
