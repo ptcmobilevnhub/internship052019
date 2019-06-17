@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, Image, FlatList, ImageBackground, ActivityIndicator } from "react-native";
+import { View, Text, Image, FlatList, ImageBackground, ActivityIndicator, ScrollView } from "react-native";
 import { IMAGES, FONTS } from "../../../assets";
 import Header from "../../components/Header";
 import styles from "./styles";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class NinthScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { isLoading: true }
-
+    
     this.savedAddresses = [
       {
         icon: IMAGES.iconOffice,
@@ -88,6 +89,19 @@ class NinthScreen extends Component {
       const result = await this.getNearbyDataFromApiUsingFetch();
       const responseJson = await result.json();
 
+      const username = await AsyncStorage.getItem('userName');
+      if (this.props.name == ''){
+        this.setState({
+          userName: username
+        });
+      }
+      else
+      {
+        this.setState({
+          userName: this.props.name
+        });
+      }
+
       this.setState({
         isLoading: false,
         nearbyData: responseJson.nearbyData
@@ -118,7 +132,7 @@ class NinthScreen extends Component {
           HeaderRight={
             <View style={{ flexDirection: "row" }}>
               <View>
-                <Text style={styles.name}>Shadhin</Text>
+                <Text style={styles.name}>{this.state.userName}</Text>
                 <View
                   style={{
                     flexDirection: "row",
@@ -269,4 +283,10 @@ class NinthScreen extends Component {
   }
 }
 
-export default NinthScreen;
+const mapStateToProps = state => {
+  return {
+    name: state.profile.name
+  };
+};
+
+export default connect(mapStateToProps)(NinthScreen);

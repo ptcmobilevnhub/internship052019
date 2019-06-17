@@ -1,0 +1,1 @@
+export { savePhone, saveName } from "./profile";

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, AsyncStorage } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 export default class Header extends Component {
 
   checkHeaderLeftNavigation = (place, navigation) => {
