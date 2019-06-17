@@ -15,7 +15,6 @@ class VerifyContainer extends Component {
 }
 
 const mapStatetoProps = (state) => {
-    console.log(state)
     return ({
         verifyCode: state.registerReducer.userData.verifyCode,
     })

@@ -1,38 +1,34 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import GenderScreen from './Gender.screen'
 
+import { addGender } from '../Register/Register.reducer'
+
 class GenderContainer extends Component {
-    data = {
-        name: this.props.name,
-        onClickBack: ()=>(undefined),
-        onClickNext: this.props.onAddName,
-        onClickSkip: ()=>(undefined),
-    }
-    render(){
+
+    render() {
+        data = {
+            name: this.props.name,
+            onClickBack: () => { this.props.navigation.goBack() },
+            onClickNext: this.props.onAddGender,
+            onClickSkip: () => { this.props.navigation.navigate('Avatar') },
+        }
         return (
-            <GenderScreen {...this.data}/>
+            <GenderScreen {...data} />
         )
     }
 }
 
-const mapStatetoProps = (state) =>{
-    return ({
-        // name:state.reducerRegister.userData.name,
-        name:"Test name"
-    })
-}
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onAddName: (name) => {
-            ToastAndroid.show(name,ToastAndroid.SHORT);
-            dispatch(addName(name));
+        onAddGender: (name) => () => {
+            dispatch(addGender(name, ownProps));
         }
     };
 };
 
 export default connect(
-    mapStatetoProps,
+    null,
     mapDispatchToProps
 )(GenderContainer);

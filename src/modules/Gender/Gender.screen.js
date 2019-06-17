@@ -26,7 +26,7 @@ export default class GenderScreen extends PureComponent {
     renderFooter = () => {
         return (
             <View style={styles.footer}>
-                {renderArrowRightFooter({ onPress: this.props.onClickNext })}
+                {renderArrowRightFooter({ onPress: this.props.onClickNext(this.state.gender) })}
             </View>
         )
     }

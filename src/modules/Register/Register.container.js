@@ -14,13 +14,11 @@ class RegisterContainer extends Component {
             onRetry: this.props.onRetry(this.props.phone),
             onCancel: this.props.onCancel
         }
-        console.log(data)
         return renderRegisterScreen(data)
     }
 }
 
 const mapStatetoProps = (state) => {
-    console.log('maps')
     return ({
         phone: state.registerReducer.userData.phone,
         isLoading: state.registerReducer.isLoading,
