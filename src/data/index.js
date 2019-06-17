@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-community/async-storage';
+
 const getVerifyCodeFromAPI = async (phone,responseHandle,errorHandle)=>{
     return fetch('https://demo4820430.mockable.io/user/verify',
     {
@@ -24,16 +26,14 @@ const getTokenFromAPI = async (userData,responseHandle,errorHandle)=>{
     }).then(responseHandle).catch(errorHandle)
 }
 
-// const putTokentoMemory = async (userToken) => {
-//     try {
-//         await AsyncStorage.setItem('userToken',userToken.userToken)
-//     } catch (e) {
-//         console.log('error: ',error)
-//         this._onErrorHandler(e)
-//     }
-// }
-// getTokentoMemory 
-// deleteToken
+const pushTokentoMemory = async (userToken) => {
+    console.log('token user push', userToken)
+    try {
+        await AsyncStorage.setItem('userToken',userToken)
+    } catch (e) {
+        console.log('error: ',error)
+        this._onErrorHandler(e)
+    }
+}
 
-
-export {getVerifyCodeFromAPI, getTokenFromAPI}
+export {getVerifyCodeFromAPI, getTokenFromAPI, pushTokentoMemory}

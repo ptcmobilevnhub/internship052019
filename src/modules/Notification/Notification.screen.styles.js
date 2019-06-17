@@ -23,6 +23,11 @@ const styles = StyleSheet.create({
     footer:{
         flexDirection:'row-reverse', 
         margin:30
+    },
+    loading:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
     }
 })
 

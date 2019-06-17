@@ -15,7 +15,25 @@ const renderFooter = (onClickNext) => {
 }
 
 const NotificationScreen = (props) => {
-    return (
+    if (props.error != null) {
+        Alert.alert(
+            'Error',
+            props.error,
+            [
+                {
+                    text: 'Cancel',
+                    onPress: props.onCancel,
+                    style: 'cancel',
+                },
+                { text: 'Retry', onPress: props.onRetry },
+            ],
+        );
+    }
+    return props.isLoading ? (
+        <View style={styles.loading}>
+            <ActivityIndicator />
+        </View>
+    ) : (
         <View style={styles.container}>
             <View style={styles.header}>
                 {renderLogoHeader()}
