@@ -7,8 +7,6 @@ import { IMAGES, FONTS } from "../../../assets";
 import styles from "./styles";
 export default class NinthScreen extends Component {
 
-  
-
   renderMap = () => {
     return (
       <MapView
