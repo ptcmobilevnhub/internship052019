@@ -6,6 +6,7 @@ const ADD_PHONE_FAILURE = 'ADD_PHONE_FAILURE'
 const CANCEL_REGIST = 'CANCEL_REGIST'
 const ADD_NAME = 'ADD_NAME'
 const ADD_GENDER = 'ADD_GENDER'
+const ADD_AVATAR_URL = 'ADD_AVATAR_URL'
 
 const initialState = {
     userData: {},
@@ -58,6 +59,16 @@ export default function registerReducer(state = initialState, action) {
                 userData: {
                     ...state.userData,
                     gender: action.gender
+                },
+                error: null,
+                isLoading: false,
+            }
+        case ADD_AVATAR_URL:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    avatar: action.avatar
                 },
                 error: null,
                 isLoading: false,
@@ -128,3 +139,12 @@ export const addGender = (gender, ownProps) => {
     };
 };
 
+export const addAvatarUrl = (url, ownProps) => {
+    return dispatch => {
+        dispatch({
+            type: ADD_AVATAR_URL,
+            avatar: url
+        });
+        ownProps.navigation.navigate('NotifiPermision')
+    };
+};
