@@ -26,7 +26,7 @@ const renderInputPhone = (phone, onSubmit) => {
             </View>
             <View style={styles.inputPhone}>
                 <TextInput
-                    // value={phone||null}
+                    value={phone||null}
                     onSubmitEditing={onSubmit}
                     style={{ textAlign: 'center', }}
                     placeholder="Enter your mobile number"

@@ -12,7 +12,13 @@ const ADD_TOKEN_SUCCESS = 'ADD_TOKEN_SUCCESS'
 const ADD_TOKEN_FAILURE = 'ADD_TOKEN_FAILURE'
 
 const initialState = {
-    userData: {},
+    userData: {
+        phone:null,
+        verifyCode:[],
+        name:null,
+        gender:null,
+        avatar:null
+    },
     isLoading: false,
     error: null
 }
@@ -26,6 +32,7 @@ export default function registerReducer(state = initialState, action) {
                     ...state.userData,
                     phone: action.phone
                 },
+                error:null,
                 isLoading: true
             }
         case ADD_PHONE_SUCCESS:
@@ -41,7 +48,7 @@ export default function registerReducer(state = initialState, action) {
         case ADD_PHONE_FAILURE:
             return {
                 ...state,
-                isLoading: true,
+                isLoading: false,
                 error: action.error
             }
         case CANCEL_REGIST:
@@ -79,6 +86,7 @@ export default function registerReducer(state = initialState, action) {
         case ADD_TOKEN_STARTED:
             return {
                 ...state,
+                error:null,
                 isLoading: true
             }
         case ADD_TOKEN_SUCCESS:
@@ -90,7 +98,7 @@ export default function registerReducer(state = initialState, action) {
         case ADD_TOKEN_FAILURE:
             return {
                 ...state,
-                isLoading: true,
+                isLoading: false,
                 error: action.error
             }
 
@@ -133,9 +141,10 @@ export const addPhone = (phone, ownProps) => {
     };
 };
 
-export const onCancelRegist = () => {
+export const onCancelRegist = (ownProps) => {
     return dispatch => {
-        dispatch({ type: CANCEL_REGIST });
+        ownProps.navigation.navigate('Welcome')
+        dispatch({ type: CANCEL_REGIST })
     }
 }
 
@@ -194,7 +203,7 @@ export const addToken = (userData, ownProps) => {
                 response.json().then(async (response) => {
                     await pushTokentoMemory(response.userToken)
                     await dispatch(addTokenSuccess(response))
-                    await ownProps.navigation.navigate('AuthLoading')
+                    await ownProps.navigation.navigate('App')
                 });
             },
             err => { dispatch(addTokenFailure(err.message)) })

@@ -36,8 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(addToken(ownProps.userData, ownProps));
         },
         onCancel: () => {
-            ownProps.navigation.navigate('Welcome')
-            dispatch(onCancelRegist());
+            dispatch(onCancelRegist(ownProps));
         }
     };
 };

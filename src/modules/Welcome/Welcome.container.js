@@ -5,16 +5,15 @@ import WelcomeScreen from './Welcome.screen'
 
 class WelcomeContainer extends Component {
 
-    onClickRegisterbyPhone = () => {
-        this.props.navigation.navigate('Register');
-    };
-
+ 
     data = {
-        onClick:this.onClickRegisterbyPhone
+        onClick:() => {
+            this.props.navigation.navigate('Register');
+        }
     }
 
-    render() {
-        return WelcomeScreen(this.data);
+    render() {      
+        return <WelcomeScreen {...this.data}/>
     }
 
 }

@@ -8,6 +8,7 @@ class RegisterContainer extends Component {
     // TODO component re-render after retry error.
     render() {
         data = {
+            phone: this.props.phone,
             isLoading: this.props.isLoading,
             error: this.props.error,
             onSubmit: this.props.onAddPhone,
@@ -35,8 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(addPhone(phone,ownProps));
         },
         onCancel: () => {
-            ownProps.navigation.navigate('Welcome')
-            dispatch(onCancelRegist());
+            dispatch(onCancelRegist(ownProps));
         }
     };
 };
