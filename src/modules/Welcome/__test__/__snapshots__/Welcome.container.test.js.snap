@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Welcome Container Test should render snapshot test for welcome container 1`] = `
+<view
+  style="flex:1;margin-horizontal:20px;flex-direction:column;justify-content:space-evenly"
+>
+  <img
+    resizemode="contain"
+    source="[object Object]"
+    style="height:46px;width:137px"
+  />
+  <img
+    resizemode="contain"
+    source="[object Object]"
+    style="width:100%"
+  />
+  <text
+    style="font-size:20px;font-weight:bold"
+  >
+    Your ride, on demand
+  </text>
+  <text
+    style="font-size:10px"
+  >
+    Whether you're headed to work, the airport, or out on the town, Uber connects you with reliable ride in minutes. One tap and a car comes directly to you.
+  </text>
+  <view
+    style="flex-direction:row;background-color:#000000;border-radius:10px;padding:10px;padding-right:20px;opacity:1"
+  >
+    <text
+      style="flex:1;text-align:center;color:white"
+    >
+      Register by Phone
+    </text>
+    <img
+      source="[object Object]"
+    />
+  </view>
+</view>
+`;
