@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 const Fonts = {
   Oswald: {
     Regular: 'Oswald-Regular',
